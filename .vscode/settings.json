@@ -1,0 +1,10 @@
+{
+  "editor.tabSize": 2,
+  "line-counter.excludes": [
+    "**/.vscode/**",
+    "**/vendor/**"
+  ],
+  "line-counter.includes": [
+    "**/src/app/**"
+  ]
+}
