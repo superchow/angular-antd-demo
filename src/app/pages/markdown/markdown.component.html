@@ -1,0 +1,14 @@
+<p>markdown works!</p>
+<div nz-row nzGutter="8">
+  <div nz-col nzSpan="12">
+    <textarea
+      rows="20"
+      nz-input
+      [(ngModel)]="remark"
+      [nzAutosize]="true" 
+      placeholder=""></textarea>
+  </div>
+  <div nz-col nzSpan="12">
+    <markdown class="markdown-body" [data]="remark"></markdown>
+  </div>
+</div>
