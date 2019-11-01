@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { routes } from '@/app/app-routing.module';
 
 @Component({
   selector: 'layout',
@@ -10,6 +11,7 @@ export class LayoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(routes);
   }
 
 }

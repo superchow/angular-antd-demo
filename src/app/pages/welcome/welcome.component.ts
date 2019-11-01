@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { JSEncrypt } from 'jsencrypt';
 
 // tslint:disable-next-line:max-line-length
@@ -9,10 +9,15 @@ const publicKey = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw4NENb1dgNLgGiYgj
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.less']
 })
-export class WelcomeComponent implements OnInit {
-
+export class WelcomeComponent implements OnInit, AfterViewInit {
+  selfStyle = {
+    width: '300px',
+    backgroundColor: 'red',
+  };
   public rsa: string;
-  constructor() { }
+
+  @ViewChild('container', {static: false}) divContainer: ElementRef;
+  constructor(private elementRef: ElementRef) { }
 
   ngOnInit() {
     // 新建JSEncrypt对象
@@ -23,6 +28,17 @@ export class WelcomeComponent implements OnInit {
     encryptor.setPublicKey(publicKey);
     // 加密数据
     this.rsa = encryptor.encrypt('a123456');
+  }
+
+  ngAfterViewInit(): void {
+    const { divContainer } = this;
+    const style: CSSStyleDeclaration = window.getComputedStyle
+      ? window.getComputedStyle(divContainer.nativeElement, '')
+      : divContainer.nativeElement.currentStyle;
+    console.log((parseFloat(style.height) - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)) / parseFloat(style.lineHeight));
+
+    // const el: HTMLInputElement = (this.elementRef.nativeElement as Document).querySelector('#dd');
+    // console.info(el.value);
   }
 
 }
