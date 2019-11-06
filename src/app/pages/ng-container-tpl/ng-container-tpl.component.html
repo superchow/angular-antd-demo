@@ -1,0 +1,12 @@
+<p>ng-container-tpl works!</p>
+<ng-container *ngTemplateOutlet="greet"></ng-container>
+<hr>
+<ng-container *ngTemplateOutlet="eng; context: myContext"></ng-container>
+<hr>
+<ng-container *ngTemplateOutlet="svk; context: myContext"></ng-container>
+<hr>
+<ng-container *ngComponentOutlet="CompleteComponent; injector: myInjector; content: myContent"></ng-container>
+
+<ng-template #greet><span>Hello no context</span></ng-template>
+<ng-template #eng let-name><span>Hello context ues $implicit, {{name}}!</span></ng-template>
+<ng-template #svk let-person="localSk"><span>Hello context ues key, {{person}}!</span></ng-template>
