@@ -1,14 +1,25 @@
-<p>markdown works!</p>
-<div nz-row nzGutter="8">
-  <div nz-col nzSpan="12">
+<div nz-row nzGutter="8" class="edm-container">
+  <div nz-col nzSpan="10">
+    <h1>what's new</h1>
     <textarea
-      rows="20"
+      [rows]="20"
       nz-input
-      [(ngModel)]="remark"
+      [(ngModel)]="remarkHead"
+      [nzAutosize]="true" 
+      placeholder=""></textarea>
+
+    <h1>Data statistics</h1>
+    <textarea
+      [rows]="20"
+      nz-input
+      [(ngModel)]="remarkBody"
       [nzAutosize]="true" 
       placeholder=""></textarea>
   </div>
-  <div nz-col nzSpan="12">
-    <markdown class="markdown-body" [data]="remark"></markdown>
+  <div nz-col nzSpan="14">
+    <h1>
+      <button nz-button nzType="primary" (click)="copyMarkdownHtml()">复制代码</button>
+    </h1>
+    <markdown id="markdownContainer" class="markdown-body" [data]="remark"></markdown>
   </div>
 </div>
