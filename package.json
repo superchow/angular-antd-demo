@@ -6,8 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "lint": "npm run lint:ts && npm run lint:style",
+    "lint:ts": "tslint -p tsconfig.app.json -c tslint.json 'src/**/*.ts' --fix",
+    "lint:style": "stylelint 'src/**/*.less' --syntax less --fix"
   },
   "private": true,
   "dependencies": {
@@ -35,6 +37,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "husky": "^3.0.9",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -42,9 +45,40 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2",
     "protractor": "~5.4.0",
+    "stylelint": "^11.1.1",
+    "stylelint-config-prettier": "^6.0.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^19.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
+    "stylelint-order": "^3.1.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.4.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "tslint --fix",
+      "prettier --parser typescript --single-quote --print-width 140 --write",
+      "git --add"
+    ],
+    "src/**/*.js": [
+      "tslint --fix",
+      "prettier --parser flow --single-quote --print-width 140 --write",
+      "git --add"
+    ],
+    "src/**/*.{css, less}": [
+      "prettier --tab-width 2 --write",
+      "stylelint --fix",
+      "git --add"
+    ]
   }
 }
