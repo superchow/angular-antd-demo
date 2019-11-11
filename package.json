@@ -7,9 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "e2e": "ng e2e",
-    "lint": "npm run lint:ts && npm run lint:style",
-    "lint:ts": "tslint -p tsconfig.app.json -c tslint.json 'src/**/*.ts' --fix",
-    "lint:style": "stylelint 'src/**/*.less' --syntax less --fix"
+    "lint": "npm run lint:ts && npm run lint:style && ng lint",
+    "lint:ts": "tslint -p tsconfig.app.json -c tslint.json src/**/*.ts --fix",
+    "lint:style": "stylelint src/**/*.less --syntax less --fix"
   },
   "private": true,
   "dependencies": {
@@ -67,18 +67,18 @@
   "lint-staged": {
     "src/**/*.ts": [
       "tslint --fix",
-      "prettier --parser typescript --single-quote --print-width 140 --write",
-      "git --add"
+      "prettier --parser typescript --single-quote --print-width 120 --write",
+      "git add"
     ],
     "src/**/*.js": [
       "tslint --fix",
-      "prettier --parser flow --single-quote --print-width 140 --write",
-      "git --add"
+      "prettier --parser flow --single-quote --print-width 120 --write",
+      "git add"
     ],
     "src/**/*.{css, less}": [
       "prettier --tab-width 2 --write",
-      "stylelint --fix",
-      "git --add"
+      "stylelint src/**/*.less --syntax less --fix",
+      "git add"
     ]
   }
 }
