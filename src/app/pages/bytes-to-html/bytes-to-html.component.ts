@@ -38,6 +38,7 @@ export class BytesToHtmlComponent implements OnInit {
 
   arrayBufferToString(arrBytes: ArrayBuffer): Promise<string> {
     return new Promise(resolve => {
+      // let files = new window.File([this.blob], file.name, {type: file.type})
       const blob = new Blob([arrBytes], { type: 'text/html' });
       const reader = new FileReader();
       reader.readAsText(blob, 'utf-8');
