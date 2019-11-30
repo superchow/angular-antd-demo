@@ -4,16 +4,16 @@ import { NzCopyToClipboardService, NzMessageService } from 'ng-zorro-antd';
 @Component({
   selector: 'app-markdown',
   templateUrl: './markdown.component.html',
-  styleUrls: ['./markdown.component.less']
+  styleUrls: ['./markdown.component.less'],
 })
 export class MarkdownComponent implements OnInit {
   remarkHead: string = '';
   remarkBody: string = '';
   public get remark(): string {
-    const breakStr = '\t\r\n';
-    const {remarkHead, remarkBody} = this;
+    const breakStr = '\n\t\r';
+    const { remarkHead, remarkBody } = this;
     return `![what' new](https://cdn.gfzq.cn/nbopstatic/email_title_3.png "新一代集中交易运营平台")
-      ${breakStr}${remarkHead}${breakStr} ![Data statistics](https://cdn.gfzq.cn/nbopstatic/email_data_3.png "新一代集中交易运营平台")
+      ${breakStr}${remarkHead}${breakStr}\n ![Data statistics](https://cdn.gfzq.cn/nbopstatic/email_data_3.png "新一代集中交易运营平台")
       ${breakStr}${remarkBody}`;
   }
 
@@ -26,14 +26,41 @@ export class MarkdownComponent implements OnInit {
   }
 
   ngOnInit() {
+    // DOMSubtreeModified MutationObserver 均会再次触发（handleEdited会有计算）
+    // const callback = function(mutations: MutationRecord[], observer: MutationObserver) {
+    //   console.log(`MutationObserver: ${mutations}`);
+    //   console.log(mutations);
+    // };
+    // const mObserver  = new MutationObserver(callback);
+    // mObserver.observe(tableRef.nativeElement, {
+    //   attributeFilter: ['class'],
+    //   attributeOldValue: true,
+    //   attributes: true,
+    //   characterData: true,
+    //   characterDataOldValue: true,
+    //   childList: true,
+    //   subtree: true,
+    // });
+    // const domObservable = fromEvent(tableRef.nativeElement, 'DOMSubtreeModified');
+    // domObservable
+    //   .pipe(debounceTime(1000))
+    //   .subscribe((e) => {
+    //     console.log(`domObservable: ${e}`);
+    //     console.log(e);
+    //   });
+    // const editObservable = fromEvent(tableRef.nativeElement, 'keyup');
+    // this.editedEventSubscription = editObservable
+    //   .pipe(debounceTime(1000))
+    //   .subscribe((e) => {
+    //     this.handleEdited(e);
+    //   });
   }
 
   async copyMarkdownHtml() {
     const markdownContainer = this.elementRef.nativeElement.querySelector('#markdownContainer');
     // markdownContainer.select();
     // document.execCommand('Copy', false, null);
-    const htmlText =
-    `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    const htmlText = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />

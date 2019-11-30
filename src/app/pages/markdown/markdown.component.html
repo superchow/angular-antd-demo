@@ -20,6 +20,7 @@
     <h1>
       <button nz-button nzType="primary" (click)="copyMarkdownHtml()">复制代码</button>
     </h1>
-    <markdown id="markdownContainer" class="markdown-body" [data]="remark"></markdown>
+    <markdown id="markdownContainer" class="markdown-body" [data]="remarkHead"></markdown>
+    <div [innerHTML]="remarkBody | markdown"></div>
   </div>
 </div>
