@@ -7,6 +7,6 @@
 <hr>
 <ng-container *ngComponentOutlet="CompleteComponent; injector: myInjector; content: myContent"></ng-container>
 
-<ng-template #greet><span>Hello no context</span></ng-template>
+<ng-template #greet><span #test>Hello no context</span></ng-template>
 <ng-template #eng let-name><span>Hello context ues $implicit, {{name}}!</span></ng-template>
 <ng-template #svk let-person="localSk"><span>Hello context ues key, {{person}}!</span></ng-template>

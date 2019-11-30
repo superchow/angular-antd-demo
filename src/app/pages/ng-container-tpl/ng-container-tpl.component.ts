@@ -7,6 +7,7 @@ import {
   ViewContainerRef,
   Injectable,
   Injector,
+  ElementRef,
 } from '@angular/core';
 
 @Injectable()
@@ -39,6 +40,8 @@ export class NgContainerTplComponent implements OnInit, AfterViewInit {
   @ViewChild('greet', { static: false }) greetTplRef: TemplateRef<any>;
   @ViewChild('eng', { static: true }) engTplRef: TemplateRef<any>;
   @ViewChild('svk', { read: ViewContainerRef, static: false }) svkTplRef: ViewContainerRef;
+  // 若是正常的元素，会立刻获得引用
+  @ViewChild('test', { static: true }) span: ElementRef<HTMLSpanElement>;
 
   constructor(injector: Injector) {
     this.myInjector = Injector.create({ providers: [{ provide: Greeter, deps: [] }], parent: injector });
@@ -46,10 +49,10 @@ export class NgContainerTplComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {}
   ngAfterViewInit() {
-    const { greetTplRef, engTplRef, svkTplRef, completeComponent } = this;
+    const { greetTplRef, engTplRef, svkTplRef, completeComponent, span } = this;
     // `@ViewChild` 拿不到`entryComponents`动态载入的组件，除非再template模板中定义了
     console.info(completeComponent);
     // `@ViewChild` 中的 `static` 属性，如果为True，则在运行更改检测之前解析查询结果
-    console.log(greetTplRef, engTplRef, svkTplRef);
+    console.log(span, engTplRef, svkTplRef);
   }
 }
