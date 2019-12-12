@@ -12,8 +12,8 @@ export class MarkdownComponent implements OnInit {
   public get remark(): string {
     const breakStr = '\n\t\r';
     const { remarkHead, remarkBody } = this;
-    return `![what' new](https://cdn.gfzq.cn/nbopstatic/email_title_3.png "新一代集中交易运营平台")
-      ${breakStr}${remarkHead}${breakStr}\n ![Data statistics](https://cdn.gfzq.cn/nbopstatic/email_data_3.png "新一代集中交易运营平台")
+    return `
+      ${breakStr}${remarkHead}${breakStr}\n
       ${breakStr}${remarkBody}`;
   }
 
@@ -64,7 +64,7 @@ export class MarkdownComponent implements OnInit {
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <title>NBOP-EDM-H5</title>
+      <title>TEST</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
       <body style="margin: 0; padding: 0;">
